@@ -1,0 +1,33 @@
+{
+  "name": "lemon-challenge",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "repository": "git@github.com:nicobevilacqua/lemon-challenge.git",
+  "author": "Nicolas Bevilacqua <nicobevilacqua@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "tsc",
+    "start": "node dist/index.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile && npm run start\"",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "fastify": "^3.27.0",
+    "fastify-plugin": "^3.0.0",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.12",
+    "@types/pino": "^7.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "eslint": "^8.7.0",
+    "jest": "^27.4.7",
+    "pino-pretty": "^7.5.0",
+    "tap": "^15.1.6",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5"
+  }
+}
