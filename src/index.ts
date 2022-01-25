@@ -1,16 +1,21 @@
+import { config } from 'dotenv';
+config();
+
 import pino from 'pino';
-const port = process.env.PORT || 7000;
+
+const HOST: string = process.env.HOST || '127.0.0.1';
+const PORT: string | number = process.env.PORT || 7000;
+const LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 
 import createApp from './app';
 
 const server = createApp({
-  logger: pino({ level: 'info', prettyPrint: true }),
+  logger: pino({ level: LOG_LEVEL }),
 });
 
 async function start() {
   try {
-    await server.listen(port);
-    console.log('Server started successfully on port', port);
+    await server.listen(PORT, HOST);
   } catch (err) {
     server.log.error(err);
     process.exit(1);

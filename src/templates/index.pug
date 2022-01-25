@@ -1,0 +1,22 @@
+- var text = `${message} ${subtitle}`;
+doctype html
+head
+  title #{text}
+  meta(charset='utf-8')
+  meta(property='og:title' content=text)
+  meta(property='og:description' content=text)
+  meta(name='twitter:card' content='summary')
+  meta(name='twitter:site' content='@foaas')
+  meta(name='twitter:title' content='FOAAS: Fuck Off As A Service')
+  meta(name='twitter:description' content=text)
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' rel='stylesheet')
+.container
+  #view-10
+    .hero-unit
+      h1 #{message}
+      p
+        em #{subtitle}
+  p(style='text-align: center')
+    a(href='http://foaas.com') foaas.com
+
