@@ -10,7 +10,10 @@ const LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 import createApp from './app';
 
 const server = createApp({
-  logger: pino({ level: LOG_LEVEL }),
+  logger: pino({ 
+    level: LOG_LEVEL,
+    prettyPrint: true,
+  }),
 });
 
 async function start() {

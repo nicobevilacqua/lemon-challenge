@@ -1,4 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import * as fooas from '@services/fooas';
 
 const url = '/message';
 
@@ -21,9 +22,6 @@ const query = {
     from: {
       type: 'string',
     },
-    callback: {
-      type: 'string',
-    },
   },
 };
 
@@ -44,24 +42,18 @@ const schema = {
   query,
   response,
   produces: [
-    'application/xml',
-    'application/javascript',
     'application/json',
-    'text/plain',
-    'text/html',
   ],
 };
 
 export async function handler(request: FastifyRequest, reply: FastifyReply) {
   try {
     const { company, from } = <{ company: string; from: string }>request.query;
-    return {
-      message: `Absolutely fucking Not, ${company}, No Fucking Way!`,
-      subtitle: `- ${from}`,
-    };
+    const response = await fooas.getAbsolutelyMessage(company, from);
+    return response;
   } catch (error) {
     console.error(error);
-    reply.code(500);
+    reply.code(500).send();
   }
 }
 
@@ -73,11 +65,7 @@ export default async function register(fastify: FastifyInstance) {
     handler,
     config: {
       limited: true,
-      html: true,
-      text: true,
-      json: true,
-      xml: true,
-      jsonp: true,
+      cached: true,
     },
   });
 }

@@ -7,15 +7,17 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run build && npm run start\"",
-    "test": "jest --setupFiles dotenv/config",
-    "test:watch": "jest --setupFiles dotenv/config --watch"
+    "start": "node -r tsconfig-paths/register -r ts-node/register dist/index.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run build && NODE_ENV=development npm run start\"",
+    "test": "NODE_ENV=test jest --setupFiles dotenv/config",
+    "test:watch": "NODE_ENV=test jest --setupFiles dotenv/config --watch"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/fastify-accepts": "^1.0.0",
     "@types/jstoxml": "^2.0.2",
     "@types/pug": "^2.0.6",
+    "axios": "^0.25.0",
     "dotenv": "^14.3.2",
     "fastify": "^3.27.0",
     "fastify-accepts": "^2.1.0",
@@ -26,7 +28,7 @@
     "jstoxml": "^2.2.8",
     "mockdate": "^3.0.5",
     "nodemon": "^2.0.15",
-    "pug": "^3.0.2"
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",

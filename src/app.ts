@@ -4,7 +4,7 @@ import cors from 'fastify-cors';
 import fastifyAccepts from 'fastify-accepts';
 import swagger, { FastifyDynamicSwaggerOptions } from 'fastify-swagger';
 
-import addHooks from './hooks';
+import addHooks from './hooks/index';
 
 // Routes
 import ping from './routes/ping';

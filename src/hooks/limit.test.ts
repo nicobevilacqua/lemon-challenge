@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import MockDate from 'mockdate';
-import { onRequestHook } from './hooks';
+import { onRequestHook } from './limit';
 
 const ip1 = '21.201.221.01';
 const user1 = 'user1:ebGcXZrHscCaLvBgOaSvsDaCvNIdiJtI';
@@ -54,10 +54,9 @@ async function callXTimes({
 }) {
   const mockedFastifyRequest = getMockedFastifyRequest(user, ip, path);
   for (let i = 0; i < times; i++) {
-    onRequestHook(
+    await onRequestHook(
       <FastifyRequest>mockedFastifyRequest,
       <FastifyReply>mockedFastifyReply,
-      jest.fn()
     );
   }
 }
